@@ -1,6 +1,7 @@
 package com.example.prak9.view
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
@@ -80,3 +81,20 @@ fun BodyHome(
         }
     }
 }
+
+@Composable
+fun ListSiswa(
+    itemSiswa: List<Siswa>,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(modifier = modifier) {
+        items(items = itemSiswa, key = { it.id }) { person ->
+            DataSiswa(
+                siswa = person,
+                modifier = Modifier
+                    .padding(all = dimensionResource(id = 8.dp))
+            )
+        }
+    }
+}
+
