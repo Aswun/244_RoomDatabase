@@ -1,6 +1,9 @@
 package com.example.prak9.view
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -10,10 +13,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.prak9.R
-
+import com.example.prak9.view.route.DestinasiEntry
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,8 +61,8 @@ fun EntrySiswaBody(
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(space = dimensionResource(id = 20.dp)),
-        modifier = modifier.padding(all = dimensionResource(id = 16.dp))
+        verticalArrangement = Arrangement.spacedBy(space = dimensionResource(R.dimen.padding_large)),
+        modifier = modifier.padding(all = dimensionResource(R.dimen.padding_medium))
     ) {
         FormInputSiswa(
             detailSiswa = uiStateSiswa.detailSiswa,
@@ -73,7 +75,7 @@ fun EntrySiswaBody(
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = stringResource(id = R.string.btn_submit)) // Asumsi stringResource(id = "Submit") adalah R.string.submit
+            Text(text = stringResource(id = R.string.btn_submit))
         }
     }
 }
@@ -88,12 +90,12 @@ fun FormInputSiswa(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(space = dimensionResource(id = 16.dp))
+        verticalArrangement = Arrangement.spacedBy(space = dimensionResource(R.dimen.padding_medium))
     ) {
         OutlinedTextField(
             value = detailSiswa.nama,
             onValueChange = { onValueChange(detailSiswa.copy(nama = it)) },
-            label = { Text(text = stringResource(id = R.string.nama_siswa)) }, // Asumsi R.string.nama_siswa
+            label = { Text(text = stringResource(id = R.string.nama)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
@@ -101,7 +103,7 @@ fun FormInputSiswa(
         OutlinedTextField(
             value = detailSiswa.alamat,
             onValueChange = { onValueChange(detailSiswa.copy(alamat = it)) },
-            label = { Text(text = stringResource(id = R.string.alamat_siswa)) }, // Asumsi R.string.alamat_siswa
+            label = { Text(text = stringResource(id = R.string.alamat)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
@@ -110,7 +112,7 @@ fun FormInputSiswa(
             value = detailSiswa.telpon,
             onValueChange = { onValueChange(detailSiswa.copy(telpon = it)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            label = { Text(text = stringResource(id = R.string.telpon_siswa)) }, // Asumsi R.string.telpon_siswa
+            label = { Text(text = stringResource(id = R.string.telpon)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
@@ -119,13 +121,13 @@ fun FormInputSiswa(
 
         if (enabled) {
             Text(
-                text = stringResource(id = R.string.required_fields), // Asumsi R.string.required_fields
-                modifier = Modifier.padding(start = dimensionResource(id = 16.dp))
+                text = stringResource(id = R.string.required_field),
+                modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_medium))
             )
         }
         HorizontalDivider(
-            modifier = Modifier.padding(bottom = dimensionResource(id = 16.dp)),
-            thickness = dimensionResource(id = 8.dp),
+            modifier = Modifier.padding(bottom = dimensionResource(R.dimen.padding_medium)),
+            thickness = dimensionResource(R.dimen.padding_small),
             color = Color.Blue
         )
     }

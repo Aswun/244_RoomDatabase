@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
@@ -14,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.prak9.view.route.DestinasiHome
 import com.example.prak9.R
+import com.example.prak9.room.Siswa
 
 
 
@@ -39,7 +41,7 @@ fun HomeScreen(
             FloatingActionButton(
                 onClick = navigateToItemEntry,
                 shape = MaterialTheme.shapes.medium,
-                modifier = Modifier.padding(all = dimensionResource(id = 20.dp))
+                modifier = Modifier.padding(all = dimensionResource(R.dimen.padding_large))
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -76,7 +78,7 @@ fun BodyHome(
         } else {
             ListSiswa(
                 itemSiswa = itemSiswa,
-                modifier = Modifier.padding(horizontal = dimensionResource(id = 8.dp))
+                modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_small))
             )
         }
     }
@@ -92,9 +94,46 @@ fun ListSiswa(
             DataSiswa(
                 siswa = person,
                 modifier = Modifier
-                    .padding(all = dimensionResource(id = 8.dp))
+                    .padding(all = dimensionResource(R.dimen.padding_small))
             )
         }
     }
 }
 
+@Composable
+fun DataSiswa(
+    siswa: Siswa,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier,
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(all = dimensionResource(R.dimen.padding_large)),
+            verticalArrangement = Arrangement.spacedBy(space = dimensionResource(R.dimen.padding_small))
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = siswa.nama,
+                    style = MaterialTheme.typography.titleLarge,
+                )
+                Spacer(Modifier.weight(weight = 1f))
+                Icon(
+                    imageVector = Icons.Default.Phone,
+                    contentDescription = null,
+                )
+                Text(
+                    text = siswa.telpon,
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
+            Text(
+                text = siswa.alamat,
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
+    }
+}

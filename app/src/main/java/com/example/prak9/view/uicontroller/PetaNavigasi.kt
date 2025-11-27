@@ -10,7 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.prak9.view.route.DestinasiHome
 import com.example.prak9.view.route.DestinasiEntry
 import com.example.prak9.view.EntrySiswaScreen
-
+import com.example.prak9.view.HomeScreen
 
 @Composable
 fun SiswaApp(navController: NavHostController = rememberNavController(), modifier: Modifier = Modifier) {
