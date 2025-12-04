@@ -4,13 +4,17 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.prak9.view.route.DestinasiHome
 import com.example.prak9.view.route.DestinasiEntry
 import com.example.prak9.view.EntrySiswaScreen
 import com.example.prak9.view.HomeScreen
+import com.example.prak9.view.route.DestinasiDetail
+import com.example.prak9.view.route.DestinasiDetail.itemIDArg
 
 @Composable
 fun SiswaApp(navController: NavHostController = rememberNavController(), modifier: Modifier = Modifier) {
@@ -31,10 +35,22 @@ fun HostNavigasi(
         composable(route = DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = { navController.navigate(route = DestinasiEntry.route) },
+                //edit 1 : tambahkan parameter navigateToItemUpdate
+                navigateToItemUpdate = {
+                    navController.navigate("${DestinasiDetail.route}/$it")
+                }
             )
         }
         composable(route = DestinasiEntry.route) {
             EntrySiswaScreen(navigateBack = { navController.popBackStack() })
+        }
+        //edit 2 : tambahkan 2 composable route
+        composable (route = DestinasiDetail.routeWithArgs,
+            arguments = listOf(navArgument(itemIDArg) {
+                type = NavType.IntType
+            })
+        ){
+
         }
     }
 }
