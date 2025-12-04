@@ -55,7 +55,7 @@ fun HostNavigasi(
         ){
             DetailSiswaScreen(
                 navigateToEditItem = { id ->
-                    navController.navigate("${DestinasiEntry.route}/$id")
+                    navController.navigate("${DestinasiEditSiswa.route}/$id")
                 },
                 navigateBack = { navController.navigateUp() }
             )
