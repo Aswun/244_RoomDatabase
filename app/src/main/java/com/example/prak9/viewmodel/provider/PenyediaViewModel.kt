@@ -41,7 +41,7 @@ object PenyediaViewModel {
                 this.createSavedStateHandle(),
                 aplikasiSiswa().container.repoSiswa
             )
-
+        }
     }
 }
 
