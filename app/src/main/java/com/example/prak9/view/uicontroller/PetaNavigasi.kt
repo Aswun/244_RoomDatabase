@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.prak9.view.DetailSiswaScreen
 import com.example.prak9.view.route.DestinasiHome
 import com.example.prak9.view.route.DestinasiEntry
 import com.example.prak9.view.EntrySiswaScreen
@@ -50,7 +51,12 @@ fun HostNavigasi(
                 type = NavType.IntType
             })
         ){
-
+            DetailSiswaScreen(
+                navigateToEditItem = { id ->
+                    navController.navigate("${DestinasiEntry.route}/$id")
+                },
+                navigateBack = { navController.popBackStack() }
+            )
         }
     }
 }
